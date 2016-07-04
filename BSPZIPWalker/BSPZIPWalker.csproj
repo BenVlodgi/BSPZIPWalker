@@ -7,8 +7,8 @@
     <ProjectGuid>{B2896842-0D04-4BB5-B5B9-7B76DD8064CE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DirectoryWalker</RootNamespace>
-    <AssemblyName>DirectoryWalker</AssemblyName>
+    <RootNamespace>BSPZIPWalker</RootNamespace>
+    <AssemblyName>BSPZIPWalker</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

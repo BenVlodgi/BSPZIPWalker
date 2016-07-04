@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace DirectoryWalker
+namespace BSPZIPWalker
 {
     class Program
     {
@@ -74,8 +74,8 @@ namespace DirectoryWalker
             }
             catch (Exception ex)
             {
-                File.AppendAllText("DirectoryWalker.error.txt", ex.ToString() + Environment.NewLine);
-                Console.WriteLine("Exception in DirectoryWalker:ProcessDirectory" + Environment.NewLine + ex.ToString());
+                File.AppendAllText("BSPZIPWalker.error.txt", ex.ToString() + Environment.NewLine);
+                Console.WriteLine("Exception in BSPZIPWalker:ProcessDirectory" + Environment.NewLine + ex.ToString());
 
                 return -1;
             }
