@@ -15,6 +15,7 @@ namespace BSPZIPWalker
         {
             string currentDir = string.Empty;
             string outputFile = string.Empty;
+            bool appendToFile = false;
 
             if (args.Length > 0)
                 currentDir = args[0];
@@ -30,9 +31,16 @@ namespace BSPZIPWalker
                 outputFile = "DirectoryWalker.out.txt";
 #endif
 
+            if (args.Length > 2)
+                appendToFile = args[2].StartsWith("-A") || args[2].StartsWith("-a");
+
             if (currentDir == string.Empty || outputFile == string.Empty)
             {
-                Console.WriteLine("Need more parameters:\npara[0] = Current Directory\npara[1] = Output File");
+                Console.WriteLine("Need more parameters:" + Environment.NewLine
+                    + "para[0] = Current Directory" + Environment.NewLine
+                    + "para[1] = Output File" + Environment.NewLine
+                    + "para[2]?= -A | (Optional Flag) If set, will append instead of overwrite."
+                    );
                 return -1;
             }
 
@@ -55,7 +63,10 @@ namespace BSPZIPWalker
                 return -1;
 
             // Write the final output
-            File.WriteAllLines(outputFile, output);
+            if(appendToFile)
+                File.AppendAllLines(outputFile, output);
+            else
+                File.WriteAllLines(outputFile, output);
 
             return 0;
 
