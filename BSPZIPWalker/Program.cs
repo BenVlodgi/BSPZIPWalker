@@ -18,13 +18,17 @@ namespace BSPZIPWalker
 
             if (args.Length > 0)
                 currentDir = args[0];
-            //else
-            //    currentDir = Environment.CurrentDirectory;
+#if DEBUG
+            else
+                currentDir = Environment.CurrentDirectory;
+#endif
 
             if (args.Length > 1)
                 outputFile = args[1];
-            //else
-            //    outputFile = "DirectoryWalker.out.txt";
+#if DEBUG
+            else
+                outputFile = "DirectoryWalker.out.txt";
+#endif
 
             if (currentDir == string.Empty || outputFile == string.Empty)
             {
@@ -41,8 +45,13 @@ namespace BSPZIPWalker
             // Ensure we've got the fully qualified path
             currentDir = new DirectoryInfo(currentDir).FullName;
 
+            // Ensure root dir ends with '\' for replacement later
+            string rootDir = currentDir;
+            if (!rootDir.EndsWith(@"\"))
+                rootDir += @"\";
+
             output = new List<string>();
-            if (ProcessDirectory(currentDir, currentDir) != 0)
+            if (ProcessDirectory(rootDir, currentDir) != 0)
                 return -1;
 
             // Write the final output
@@ -62,7 +71,7 @@ namespace BSPZIPWalker
                 foreach (var file in files)
                 {
                     string fullName = new FileInfo(file).FullName;
-                    string relativeName = fullName.Replace(root + @"\", string.Empty);
+                    string relativeName = fullName.Replace(root, string.Empty);
 
                     output.Add(relativeName);
                     output.Add(fullName);
